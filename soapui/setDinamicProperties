@@ -1,0 +1,31 @@
+File input = new File("/path_al_archivo/inputBajas.txt")
+
+def lineaDeArchivo
+def idContrato
+def idCustomer
+def lineToProcess
+
+if (!input.exists()) {
+     println "No existe el archivo"
+
+} 
+else {
+	lineToProcess = testRunner.testCase.getPropertyValue("toProcessCounter")
+	log.info("lineToProcess -> ${lineToProcess}")
+	lineToProcessNumber = lineToProcess.toInteger()
+	lineaDeArchivo = input.readLines().get(lineToProcessNumber).split(" ")
+	idContrato=lineaDeArchivo[0] 
+	idCustomer=lineaDeArchivo[1]
+	log.info("los datos del contrato son -> ${idContrato} ${idCustomer}")
+	testRunner.testCase.setPropertyValue("bajaContratoId",idContrato)
+	testRunner.testCase.setPropertyValue("bajaUsuarioId",idCustomer)
+	lineToProcessNumber = lineToProcessNumber + 1
+	testRunner.testCase.setPropertyValue("toProcessCounter",(lineToProcessNumber).toString())
+
+	log.info("Nuevo valor del id de contrato " + testRunner.testCase.getPropertyValue("bajaContratoId"))
+	log.info("Nuevo valor del id de customer " + testRunner.testCase.getPropertyValue("bajaUsuarioId"))
+	log.info("Nuevo valor del contador " + testRunner.testCase.getPropertyValue("toProcessCounter"))
+	
+	  	 
+	 }
+
